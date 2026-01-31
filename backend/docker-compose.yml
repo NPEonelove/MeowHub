@@ -33,6 +33,24 @@ services:
       retries: 5
       start_period: 20s
 
+  api-gateway:
+    container_name: api-gateway
+    build: ./api-gateway
+    restart: unless-stopped
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    environment:
+      - EUREKA_URL=http://eureka-server:8761/eureka
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: [ "CMD-SHELL", "curl -f http://localhost:8080/actuator/health || exit 1" ]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
   promtail:
     container_name: promtail
     image: grafana/promtail:latest
