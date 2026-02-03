@@ -1,4 +1,4 @@
-package org.npeonelove.configserver;
+package com.meowlove.authservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -6,12 +6,13 @@ import org.springframework.test.context.TestPropertySource;
 
 @SpringBootTest
 @TestPropertySource(properties = {
-		"eureka.client.enabled=false"
+        "spring.cloud.config.enabled=false",
+        "eureka.client.enabled=false"
 })
-class ConfigServerApplicationTests {
+class AuthServiceApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    void contextLoads() {
+    }
 
 }
